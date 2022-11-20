@@ -43,10 +43,9 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.all(30.0),
                 child: Form(
                     key: formKey,
                     child: Column(
@@ -108,79 +107,146 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                             ),
                           ),
                         ),
-
-                        // Padding(
-                        //   padding: const EdgeInsets.symmetric(
-                        //       horizontal: 20, vertical: 10),
-                        //   child: InkWell(
-                        //     onTap: () {
-                        //       ref.read(imageProvider).getImage();
-                        //     },
-                        //     child: Container(
-                        //         height: 350,
-                        //         decoration: BoxDecoration(
-                        //             borderRadius: BorderRadius.circular(20),
-                        //             border: Border.all(color: Colors.black)),
-                        //         child: image == null
-                        //             ? Center(child: Text('Select an image'))
-                        //             : ClipRRect(
-                        //                 borderRadius: BorderRadius.circular(20),
-                        //                 child: Image.file(
-                        //                   File(image.path),
-                        //                   fit: BoxFit.cover,
-                        //                 ),
-                        //               )),
-                        //   ),
-                        // ),
                         const SizedBox(
                           height: 20,
                         ),
-                        KTextFormField(
-                          label: "",
-                          hint: "Passport Number",
-                          keyboardType: TextInputType.text,
-                          controller: passportNumber,
-                          validator: (value) {
-                            return value!.isEmpty ? 'Required' : null;
-                          },
-                        ),
-                        KTextFormField(
-                          label: "",
-                          hint: "Name",
-                          keyboardType: TextInputType.text,
+                        TextFormField(
                           controller: name,
                           validator: (value) {
                             return value!.isEmpty ? 'Required' : null;
                           },
+                          decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: const BorderSide(
+                                  color: Color(0xff1C1B1F),
+                                  width: 1.0,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              labelText: 'Full Name',
+                              labelStyle: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "Poppins",
+                              )),
                         ),
-                        KTextFormField(
-                          label: "",
-                          hint: "Address",
-                          keyboardType: TextInputType.text,
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
+                          controller: passportNumber,
+                          validator: (value) {
+                            return value!.isEmpty ? 'Required' : null;
+                          },
+                          decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: const BorderSide(
+                                  color: Color(0xff1C1B1F),
+                                  width: 1.0,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              labelText: 'Passport Number',
+                              labelStyle: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "Poppins",
+                              )),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
                           controller: address,
                           validator: (value) {
                             return value!.isEmpty ? 'Required' : null;
                           },
+                          decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: const BorderSide(
+                                  color: Color(0xff1C1B1F),
+                                  width: 1.0,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              labelText: 'Address',
+                              labelStyle: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "Poppins",
+                              )),
                         ),
-                        KTextFormField(
-                          label: "",
-                          hint: "Visa Number",
-                          keyboardType: TextInputType.text,
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
                           controller: visaNumber,
                           validator: (value) {
                             return value!.isEmpty ? 'Required' : null;
                           },
+                          decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: const BorderSide(
+                                  color: Color(0xff1C1B1F),
+                                  width: 1.0,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              labelText: 'Visa Number',
+                              labelStyle: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "Poppins",
+                              )),
                         ),
-                        KTextFormField(
-                          label: "",
-                          hint: "Visa Expiry",
-                          keyboardType: TextInputType.text,
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
                           controller: visaExpiry,
                           validator: (value) {
                             return value!.isEmpty ? 'Required' : null;
                           },
+                          decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: const BorderSide(
+                                  color: Color(0xff1C1B1F),
+                                  width: 1.0,
+                                  style: BorderStyle.solid,
+                                ),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              labelText: 'Visa Expiry',
+                              labelStyle: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "Poppins",
+                              )),
                         ),
                         ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  const Color(0xff10A6D9)),
+                            ),
                             onPressed: () async {
                               Random random = Random();
                               formKey.currentState!.save();

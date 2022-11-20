@@ -4,7 +4,6 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:rohit_projectt/model/passport_model.dart';
-import 'package:rohit_projectt/screen/main_screen.dart';
 import 'package:rohit_projectt/screen/passport_entry.dart';
 import 'package:rohit_projectt/services/db_services.dart';
 import 'package:rohit_projectt/services/notification_services.dart';
@@ -15,9 +14,7 @@ void main() async {
   Hive.init(appDocumentDirectory.path);
   Hive.registerAdapter(PassportModelAdapter());
   NotificationServices().initialization();
-  // runApp(const GetMaterialApp(
-  //   home: MainScreenPage(),
-  // ));
+
   runApp(const ProviderScope(child: MyApp()));
 }
 

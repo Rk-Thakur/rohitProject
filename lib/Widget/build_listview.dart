@@ -16,6 +16,8 @@ class BuildListView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool? isNotified;
+    bool tag;
+
     final passportBox = Hive.box('passport');
 
     return ValueListenableBuilder(
@@ -46,9 +48,8 @@ class BuildListView extends ConsumerWidget {
                                     .read(crudProvider.notifier)
                                     .deleteData(index);
                                 if (isNotified == true) {
-                                  await NotificationServices()
-                                      .deletNotification(
-                                          passportdetails.passport_id!);
+                                  NotificationServices().deletNotification(
+                                      passportdetails.passport_id!);
                                   Get.snackbar("Notification Update",
                                       'Notification has been Deleted!!');
                                 }
@@ -92,6 +93,8 @@ class BuildListView extends ConsumerWidget {
                                 Get.snackbar("Notification Update",
                                     'Notification has been set up!!!');
                                 isNotified = true;
+                                tag = true;
+                                print(isNotified);
                               },
                               backgroundColor: const Color(0xFFFE4A49),
                               foregroundColor: Colors.white,

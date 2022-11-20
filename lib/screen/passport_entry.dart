@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:rohit_projectt/Widget/build_listview.dart';
-import 'package:rohit_projectt/model/passport_model.dart';
 import 'package:rohit_projectt/screen/passport_form_data.dart';
 
 import '../Widget/search_widget.dart';
@@ -29,7 +28,7 @@ class _PassportPageState extends State<PassportPage> {
                 showSearch(context: context, delegate: SearchWidget());
               },
               icon: const Icon(Icons.search),
-            )
+            ),
           ],
         ),
         floatingActionButton: FloatingActionButton(
@@ -52,19 +51,6 @@ class _PassportPageState extends State<PassportPage> {
             padding: const EdgeInsets.all(15.0),
             child: Column(
               children: [
-                const SizedBox(
-                  height: 15,
-                ),
-                const Align(
-                  alignment: Alignment.topLeft,
-                  child: Text("Passport Details"),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
                 Expanded(child: BuildListView()),
               ],
             ),
@@ -74,35 +60,35 @@ class _PassportPageState extends State<PassportPage> {
     );
   }
 
-  Widget buildSearch() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 50,
-      child: TextFormField(
-        controller: textController,
-        autofocus: false,
-        onChanged: (value) {
-          // showSearch(context: context, delegate: SearchWidget());
-        },
-        decoration: InputDecoration(
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(
-                color: Color(0xff1C1B1F),
-                width: 1.0,
-                style: BorderStyle.solid,
-              ),
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-            labelText: 'Search',
-            labelStyle: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              fontFamily: "Poppins",
-            )),
-      ),
-    );
-  }
+  // Widget buildSearch() {
+  //   return Container(
+  //     width: MediaQuery.of(context).size.width,
+  //     height: 50,
+  //     child: TextFormField(
+  //       controller: textController,
+  //       autofocus: false,
+  //       onChanged: (value) {
+  //         // showSearch(context: context, delegate: SearchWidget());
+  //       },
+  //       decoration: InputDecoration(
+  //           focusedBorder: OutlineInputBorder(
+  //             borderRadius: BorderRadius.circular(8),
+  //             borderSide: const BorderSide(
+  //               color: Color(0xff1C1B1F),
+  //               width: 1.0,
+  //               style: BorderStyle.solid,
+  //             ),
+  //           ),
+  //           border: OutlineInputBorder(
+  //             borderRadius: BorderRadius.circular(8),
+  //           ),
+  //           labelText: 'Search',
+  //           labelStyle: const TextStyle(
+  //             fontSize: 12,
+  //             fontWeight: FontWeight.w400,
+  //             fontFamily: "Poppins",
+  //           )),
+  //     ),
+  //   );
+  // }
 }
