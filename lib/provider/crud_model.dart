@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
-enum PassportState { intial, adding, added, editing, edited, delete, failure }
+enum PassportState { intial, adding, added, editing, edited, deleted, failure }
 
 class PassState extends Equatable {
   final PassportState passstate;

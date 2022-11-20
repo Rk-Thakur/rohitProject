@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rohit_projectt/model/passport_model.dart';
 import 'package:rohit_projectt/provider/crud_model.dart';
@@ -13,17 +14,17 @@ class CrudProvider extends StateNotifier<PassState> {
           passstate: PassportState.intial,
         ));
   final Ref ref;
-  Future<void> setData(PassportModel passport) async {
+  Future<bool> setData(PassportModel passport) async {
     try {
       state = state.copyWith(passstate: PassportState.adding);
+      print(passport.image);
       await DBServices().setDetails(passport);
-      NotificationServices()
-          .Notify(name: passport.name, id: passport.created_date as int);
       state = state.copyWith(passstate: PassportState.added);
-      print('added');
+      return true;
     } catch (e) {
       state = state.copyWith(
           passstate: PassportState.failure, errormessage: e.toString());
+      return false;
     }
   }
 
@@ -33,6 +34,16 @@ class CrudProvider extends StateNotifier<PassState> {
       await DBServices().editDetails(index, passport);
 
       state = state.copyWith(passstate: PassportState.edited);
+    } catch (e) {
+      state = state.copyWith(
+          passstate: PassportState.failure, errormessage: e.toString());
+    }
+  }
+
+  Future<void> deleteData(int index) async {
+    try {
+      await DBServices().deleteDetails(index);
+      state = state.copyWith(passstate: PassportState.deleted);
     } catch (e) {
       state = state.copyWith(
           passstate: PassportState.failure, errormessage: e.toString());

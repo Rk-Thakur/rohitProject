@@ -1,5 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:hive/hive.dart';
+import 'package:image_picker/image_picker.dart';
 
 part 'passport_model.g.dart';
 
@@ -18,12 +18,18 @@ class PassportModel {
   final String? visaExpiry;
   @HiveField(5)
   final DateTime? created_date;
-  const PassportModel({
-    this.passportNumber,
-    this.name,
-    this.address,
-    this.visaNumber,
-    this.visaExpiry,
-    this.created_date,
-  });
+  @HiveField(6)
+  final int? passport_id;
+  @HiveField(7)
+  final String? image;
+
+  const PassportModel(
+      {this.passportNumber,
+      this.name,
+      this.address,
+      this.visaNumber,
+      this.visaExpiry,
+      this.created_date,
+      this.passport_id,
+      this.image});
 }

@@ -13,12 +13,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final appDocumentDirectory = await getApplicationDocumentsDirectory();
   Hive.init(appDocumentDirectory.path);
-  Hive.registerAdapter(passportAdapter());
+  Hive.registerAdapter(PassportModelAdapter());
   NotificationServices().initialization();
-  // runApp(GetMaterialApp(
-  //   home: const MainScreenPage(),
+  // runApp(const GetMaterialApp(
+  //   home: MainScreenPage(),
   // ));
-  runApp(ProviderScope(child: const MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {

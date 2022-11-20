@@ -21,8 +21,12 @@ class DBServices {
     }
   }
 
-  delete(int index) {
-    passportBox.deleteAt(index);
+  Future<void> deleteDetails(int index) async {
+    try {
+      await passportBox.deleteAt(index);
+    } catch (e) {
+      throw e.toString();
+    }
   }
 
   close() {

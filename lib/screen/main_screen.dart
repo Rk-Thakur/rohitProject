@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:popup_card/popup_card.dart';
-import 'package:rohit_projectt/services/notification_services.dart';
 
 class MainScreenPage extends StatefulWidget {
   const MainScreenPage({Key? key}) : super(key: key);
@@ -12,61 +10,84 @@ class MainScreenPage extends StatefulWidget {
 class _MainScreenPageState extends State<MainScreenPage> {
   @override
   Widget build(BuildContext context) {
-    DateTime selectedDate = DateTime.now();
-    Future<void> _selectedDate(BuildContext context) async {
-      final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2016, 7),
-      );
-      if (picked != null && picked != selectedDate) {
-        setState(() {
-          selectedDate = picked;
-        });
-      }
-    }
-
-    // return Scaffold(
-    //   floatingActionButton: FloatingActionButton(
-    //     onPressed: () {
-    //       showDialog(
-    //           context: context,
-    //           builder: (BuildContext context) {
-    //             return form(context);
-    //           });
-    //     },
-    //     child: Icon(Icons.add),
-    //   ),
-    //   body: SafeArea(
-    //     child: Expanded(
-    //         child: Container(
-    //       child: SingleChildScrollView(
-    //         child: Column(
-    //           children: [
-    //             ...[1, 2, 3].map((e) => ListTile(
-    //                   title: Text('ranjan'),
-    //                   subtitle: Text("ThakuThakurThakurThakurr"),
-    //                 ))
-    //           ],
-    //         ),
-    //       ),
-    //     )),
-    //   ),
-    // );
-
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            ElevatedButton(
-                onPressed: () {
-                  NotificationServices().Notify(name: 'ranjan');
-                },
-                child: Icon(Icons.message))
-          ],
-        ),
+      appBar: AppBar(
+        title: const Text(" Passport details"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                showSearch(context: context, delegate: CustomSearch());
+              },
+              icon: const Icon(Icons.search))
+        ],
       ),
     );
+  }
+}
+
+class CustomSearch extends SearchDelegate {
+  List<String> fruitList = [
+    "Apple",
+    "Banana",
+    "Peach",
+    "Avocado",
+  ];
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+          onPressed: () {
+            query = '';
+          },
+          icon: const Icon(Icons.clear))
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+        onPressed: () {
+          close(context, null);
+        },
+        icon: Icon(Icons.arrow_back));
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var fruit in fruitList) {
+      if (fruit.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(fruit);
+      }
+    }
+    return ListView.builder(
+        itemCount: matchQuery.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(matchQuery[index]),
+          );
+        });
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var fruit in fruitList) {
+      if (fruit.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(fruit);
+      }
+    }
+    return ListView.builder(
+        itemCount: matchQuery.length,
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              print(index);
+            },
+            child: ListTile(
+              title: Text(matchQuery[index]),
+            ),
+          );
+        });
   }
 }

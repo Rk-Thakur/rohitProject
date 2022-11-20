@@ -8,6 +8,7 @@ import 'package:rohit_projectt/screen/passportt_details.dart';
 import '../model/passport_model.dart';
 import '../screen/edit_passport_details.dart';
 import '../services/db_services.dart';
+import '../services/notification_services.dart';
 
 class SearchFinder extends StatelessWidget {
   SearchFinder({Key? key, this.query}) : super(key: key);
@@ -16,11 +17,11 @@ class SearchFinder extends StatelessWidget {
   Widget build(BuildContext context) {
     final passportBox = Hive.box('passport');
     return ValueListenableBuilder(
-        valueListenable: passportBox.listenable(),
+        valueListenable: DBServices().passportBox.listenable(),
         builder: (context, Box passport, _) {
           var results = query!.isEmpty
-              ? passportBox.values.toList()
-              : passportBox.values
+              ? passport.values.toList()
+              : passport.values
                   .where(
                       (element) => element.name!.toLowerCase().contains(query!))
                   .toList();
@@ -40,15 +41,17 @@ class SearchFinder extends StatelessWidget {
                         passportBox.getAt(index) as PassportModel;
                     return InkWell(
                       onTap: () {
-                        Get.to(
-                            () => PassportDetails(passport: passportdetails));
+                        Get.to(() => PassportDetails(
+                              passport: passportdetails,
+                            ));
                       },
                       child: Slidable(
                         startActionPane:
                             ActionPane(motion: const ScrollMotion(), children: [
                           SlidableAction(
-                            onPressed: (context) {
-                              DBServices().delete(index);
+                            onPressed: (context) async {
+                              await NotificationServices()
+                                  .deletNotification(index);
                             },
                             backgroundColor: const Color(0xFFFE4A49),
                             foregroundColor: Colors.white,
@@ -65,8 +68,8 @@ class SearchFinder extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => EditPassportDetails(
-                                            passport: passportdetails,
-                                            index: index,
+                                            passportdetails,
+                                            index,
                                           )));
                             },
                             backgroundColor: const Color(0xFF21B7CA),

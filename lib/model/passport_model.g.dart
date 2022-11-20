@@ -6,7 +6,7 @@ part of 'passport_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class passportAdapter extends TypeAdapter<PassportModel> {
+class PassportModelAdapter extends TypeAdapter<PassportModel> {
   @override
   final int typeId = 1;
 
@@ -23,13 +23,15 @@ class passportAdapter extends TypeAdapter<PassportModel> {
       visaNumber: fields[3] as String?,
       visaExpiry: fields[4] as String?,
       created_date: fields[5] as DateTime?,
+      passport_id: fields[6] as int?,
+      image: fields[7] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, PassportModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.passportNumber)
       ..writeByte(1)
@@ -41,7 +43,11 @@ class passportAdapter extends TypeAdapter<PassportModel> {
       ..writeByte(4)
       ..write(obj.visaExpiry)
       ..writeByte(5)
-      ..write(obj.created_date);
+      ..write(obj.created_date)
+      ..writeByte(6)
+      ..write(obj.passport_id)
+      ..writeByte(7)
+      ..write(obj.image);
   }
 
   @override
@@ -50,7 +56,7 @@ class passportAdapter extends TypeAdapter<PassportModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is passportAdapter &&
+      other is PassportModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
