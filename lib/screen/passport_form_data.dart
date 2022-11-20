@@ -224,23 +224,24 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                             return value!.isEmpty ? 'Required' : null;
                           },
                           decoration: InputDecoration(
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide: const BorderSide(
-                                  color: Color(0xff1C1B1F),
-                                  width: 1.0,
-                                  style: BorderStyle.solid,
-                                ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide: const BorderSide(
+                                color: Color(0xff1C1B1F),
+                                width: 1.0,
+                                style: BorderStyle.solid,
                               ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              labelText: 'Visa Expiry',
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "Poppins",
-                              )),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            labelText: 'Visa Expiry',
+                            labelStyle: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "Poppins",
+                            ),
+                          ),
                         ),
                         ElevatedButton(
                             style: ButtonStyle(

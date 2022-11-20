@@ -16,8 +16,7 @@ class BuildListView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool? isNotified;
-    bool tag;
-
+    bool? tag;
     final passportBox = Hive.box('passport');
 
     return ValueListenableBuilder(
@@ -25,7 +24,14 @@ class BuildListView extends ConsumerWidget {
         builder: (context, passport, _) {
           return passportBox.isEmpty
               ? const Center(
-                  child: Text('No Data!!'),
+                  child: Text(
+                    'No Data!!',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "Poppins",
+                    ),
+                  ),
                 )
               : ListView.builder(
                   itemCount: passportBox.length,
@@ -94,7 +100,6 @@ class BuildListView extends ConsumerWidget {
                                     'Notification has been set up!!!');
                                 isNotified = true;
                                 tag = true;
-                                print(isNotified);
                               },
                               backgroundColor: const Color(0xFFFE4A49),
                               foregroundColor: Colors.white,
@@ -141,8 +146,8 @@ class BuildListView extends ConsumerWidget {
                                   ),
                                 ],
                               ),
-                              subtitle:
-                                  Text(passportdetails.address.toString())),
+                              subtitle: Text(
+                                  passportdetails.passportNumber.toString())),
                         ),
                       ),
                     );
