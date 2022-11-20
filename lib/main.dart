@@ -45,7 +45,6 @@ class _MyAppState extends State<MyApp> {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasError) {
               return const Text("Something went wrong");
-              // return Text(snapshot.error.toString());
             } else {
               return const PassportPage();
             }

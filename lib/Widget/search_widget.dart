@@ -142,38 +142,11 @@ class _SearchFinderState extends State<SearchFinder> {
                               passport: passportdetails,
                             ));
                       },
-                      child: Slidable(
-                        startActionPane:
-                            ActionPane(motion: const ScrollMotion(), children: [
-                          SlidableAction(
-                            onPressed: (context) async {
-                              await NotificationServices()
-                                  .deletNotification(index);
-                            },
-                            backgroundColor: const Color(0xFFFE4A49),
-                            foregroundColor: Colors.white,
-                            icon: Icons.delete,
-                            label: 'Delete',
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          const SizedBox(
-                            width: 4,
-                          ),
-                          SlidableAction(
-                            onPressed: (context) {},
-                            backgroundColor: const Color(0xFF21B7CA),
-                            foregroundColor: Colors.white,
-                            icon: Icons.edit,
-                            label: 'Edit',
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ]),
-                        child: Card(
-                          elevation: 3,
-                          child: ListTile(
-                            title: Text(passportdetails.name.toString()),
-                            subtitle: Text(passportdetails.address.toString()),
-                          ),
+                      child: Card(
+                        elevation: 3,
+                        child: ListTile(
+                          title: Text(passportdetails.name.toString()),
+                          subtitle: Text(passportdetails.address.toString()),
                         ),
                       ),
                     );
