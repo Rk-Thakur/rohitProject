@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:rohit_projectt/provider/crud_model.dart';
 import 'package:rohit_projectt/provider/crud_provider.dart';
 
-import '../common/k_text_form.dart';
 import '../model/passport_model.dart';
 import '../provider/image_provider.dart';
 import 'passport_entry.dart';

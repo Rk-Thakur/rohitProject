@@ -16,8 +16,6 @@ class PassportDetails extends ConsumerStatefulWidget {
 }
 
 class _PassportDetailsState extends ConsumerState<PassportDetails> {
-  bool isSwitched = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,6 +113,16 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                               KText(
                                 align: Alignment.center,
                                 title: widget.passport.passportNumber!,
+                                fontSize: 20.00,
+                              ),
+                              KText(
+                                align: Alignment.topLeft,
+                                title: "Created Date:",
+                                fontSize: 15.00,
+                              ),
+                              KText(
+                                align: Alignment.center,
+                                title: widget.passport.created_date.toString(),
                                 fontSize: 20.00,
                               ),
                             ],
