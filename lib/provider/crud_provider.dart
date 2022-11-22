@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rohit_projectt/model/passport_model.dart';
 import 'package:rohit_projectt/provider/crud_model.dart';
 import 'package:rohit_projectt/services/db_services.dart';
-import 'package:rohit_projectt/services/notification_services.dart';
 
-final crudProvider =
-    StateNotifierProvider<CrudProvider, PassState>((ref) => CrudProvider(ref));
+final crudProvider = StateNotifierProvider.autoDispose<CrudProvider, PassState>(
+    (ref) => CrudProvider(ref));
 
 class CrudProvider extends StateNotifier<PassState> {
   CrudProvider(this.ref)
