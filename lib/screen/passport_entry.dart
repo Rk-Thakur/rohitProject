@@ -16,79 +16,70 @@ class _PassportPageState extends State<PassportPage> {
   final textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Passport Details"),
-          automaticallyImplyLeading: false,
-          actions: [
-            IconButton(
-              onPressed: () {
-                showSearch(context: context, delegate: SearchWidget());
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Passport Details"),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            onPressed: () {
+              showSearch(context: context, delegate: SearchWidget());
+            },
+            icon: const Icon(Icons.search),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color(0xFF21B7CA),
+        onPressed: () {},
+        child: IconButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const PassportFormPage()),
+            );
+          },
+          icon: const Icon(
+            Icons.add,
+          ),
+        ),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            children: [
+              Expanded(child: BuildListView()),
+            ],
+          ),
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
               },
-              icon: const Icon(Icons.search),
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
             ),
           ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: const Color(0xFF21B7CA),
-          onPressed: () {},
-          child: IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                    builder: (context) => const PassportFormPage()),
-              );
-            },
-            icon: const Icon(
-              Icons.add,
-            ),
-          ),
-        ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              children: [
-                Expanded(child: BuildListView()),
-              ],
-            ),
-          ),
         ),
       ),
     );
   }
-
-  // Widget buildSearch() {
-  //   return Container(
-  //     width: MediaQuery.of(context).size.width,
-  //     height: 50,
-  //     child: TextFormField(
-  //       controller: textController,
-  //       autofocus: false,
-  //       onChanged: (value) {
-  //         // showSearch(context: context, delegate: SearchWidget());
-  //       },
-  //       decoration: InputDecoration(
-  //           focusedBorder: OutlineInputBorder(
-  //             borderRadius: BorderRadius.circular(8),
-  //             borderSide: const BorderSide(
-  //               color: Color(0xff1C1B1F),
-  //               width: 1.0,
-  //               style: BorderStyle.solid,
-  //             ),
-  //           ),
-  //           border: OutlineInputBorder(
-  //             borderRadius: BorderRadius.circular(8),
-  //           ),
-  //           labelText: 'Search',
-  //           labelStyle: const TextStyle(
-  //             fontSize: 12,
-  //             fontWeight: FontWeight.w400,
-  //             fontFamily: "Poppins",
-  //           )),
-  //     ),
-  //   );
-  // }
 }

@@ -1,39 +1,23 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:rohit_projectt/provider/crud_model.dart';
-import 'package:rohit_projectt/provider/crud_provider.dart';
+import 'package:rohit_projectt/Widget/textformfield.dart';
+import 'package:rohit_projectt/model/passport_model.dart';
 
 import '../Widget/category.dart';
-import '../model/passport_model.dart';
 import '../provider/image_provider.dart';
-import 'passport_entry.dart';
 
-class PassportFormPage extends ConsumerStatefulWidget {
-  const PassportFormPage({Key? key}) : super(key: key);
-
+class EditForm extends ConsumerStatefulWidget {
+  EditForm({Key? key, this.passport, this.index}) : super(key: key);
+  final PassportModel? passport;
+  final int? index;
   @override
-  ConsumerState<PassportFormPage> createState() => _PassportFormPageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _PassportFormPageState extends ConsumerState<PassportFormPage> {
-  XFile? image;
-  Future<void> getImage() async {
-    final ImagePicker _picker = ImagePicker();
-
-    await _picker
-        .pickImage(source: ImageSource.gallery)
-        .then((value) => value != null
-            ? setState(() {
-                image = value;
-              })
-            : null);
-  }
-
+class _MyHomePageState extends ConsumerState<EditForm> {
   int _activeCurrentStep = 0;
   var stay_previous = ['Yes', 'No'];
 
@@ -42,50 +26,13 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
   DateTime visato = DateTime(2022, 12, 24);
   DateTime passedYear = DateTime(2022, 12, 24);
   String? previous;
-  TextEditingController name = TextEditingController();
-  TextEditingController family_name = TextEditingController();
-  TextEditingController permanent_address = TextEditingController();
-  TextEditingController residential_address = TextEditingController();
-  TextEditingController personal_number = TextEditingController();
-  TextEditingController office_number = TextEditingController();
-  TextEditingController nationality = TextEditingController();
-  TextEditingController father_name = TextEditingController();
-  TextEditingController mother_name = TextEditingController();
-  TextEditingController religion = TextEditingController();
-  TextEditingController blood_group = TextEditingController();
-  TextEditingController email = TextEditingController();
-  TextEditingController marital_status = TextEditingController();
-  TextEditingController passport_number = TextEditingController();
-  TextEditingController validityofvisa = TextEditingController();
-  TextEditingController currentvisatype = TextEditingController();
-  TextEditingController visatype = TextEditingController();
-  TextEditingController working_organization = TextEditingController();
-  TextEditingController remarks = TextEditingController();
-
-  //Education Qualification
-  TextEditingController degree = TextEditingController();
-  TextEditingController university = TextEditingController();
-  TextEditingController division = TextEditingController();
-  TextEditingController passedyear = TextEditingController();
-
-  //professional Description
-  TextEditingController nameOfOrganization = TextEditingController();
-  TextEditingController addressOfOrganization = TextEditingController();
-  TextEditingController designation = TextEditingController();
-  TextEditingController contactNumberofOrganization = TextEditingController();
-  TextEditingController contactEmailOfOrganization = TextEditingController();
-  TextEditingController focalPersonOfOrganization = TextEditingController();
-  TextEditingController telephone = TextEditingController();
-
-  //reference
-  TextEditingController referenceName = TextEditingController();
-  TextEditingController referenceNumber = TextEditingController();
   List<GlobalKey<FormState>> personalform = [
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
   ];
+
   List<Step> stepList() => [
         Step(
           state:
@@ -104,7 +51,8 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
-                    controller: name,
+                    controller: TextForm().name
+                      ..text = widget.passport!.name.toString(),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: ' Name / नाम',
@@ -120,7 +68,8 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
-                    controller: family_name,
+                    controller: TextForm().family_name
+                      ..text = widget.passport!.name.toString(),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: ' Family Name / थर',
@@ -136,7 +85,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
-                    controller: permanent_address,
+                    controller: TextForm().permanent_address,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: ' Permanent Address / स्थायी',
@@ -152,7 +101,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
-                    controller: residential_address,
+                    controller: TextForm().residential_address,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: ' Residental Address / आवासीय',
@@ -168,7 +117,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
-                    controller: personal_number,
+                    controller: TextForm().personal_number,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -185,7 +134,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
-                    controller: office_number,
+                    controller: TextForm().office_number,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -202,6 +151,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
+                    controller: TextForm().dateOfBirth,
                     keyboardType: TextInputType.datetime,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
@@ -235,7 +185,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
-                    controller: nationality,
+                    controller: TextForm().nationality,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: ' Nationality / राष्ट्रियता',
@@ -251,7 +201,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
-                    controller: father_name,
+                    controller: TextForm().father_name,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: ' Father Name / बुबाको नाम',
@@ -267,7 +217,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
-                    controller: mother_name,
+                    controller: TextForm().mother_name,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: ' Mother  Name / आमाको नाम',
@@ -283,7 +233,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
-                    controller: religion,
+                    controller: TextForm().religion,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: ' Religion / धर्म',
@@ -299,7 +249,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
-                    controller: blood_group,
+                    controller: TextForm().blood_group,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: ' Blood Group / रक्त समूह ',
@@ -315,7 +265,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
-                    controller: email,
+                    controller: TextForm().email,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: ' Email Address / इमेल',
@@ -331,7 +281,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
-                    controller: marital_status,
+                    controller: TextForm().marital_status,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: ' Marital Status / वैवाहिक स्थिति',
@@ -347,7 +297,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
-                    controller: passport_number,
+                    controller: TextForm().passport_number,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -364,7 +314,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
-                    controller: validityofvisa,
+                    controller: TextForm().validityofvisa,
                     keyboardType: TextInputType.datetime,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -381,7 +331,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     validator: (value) {
                       return value!.isEmpty ? 'Required / आवश्यक' : null;
                     },
-                    controller: currentvisatype,
+                    controller: TextForm().currentvisatype,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Current Visa Type / भिसा प्रकार',
@@ -433,7 +383,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                                                 ? 'Required / आवश्यक'
                                                 : null;
                                           },
-                                          controller: visatype,
+                                          controller: TextForm().visatype,
                                           decoration: InputDecoration(
                                             border: OutlineInputBorder(),
                                             labelText:
@@ -452,6 +402,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                                                 ? 'Required / आवश्यक'
                                                 : null;
                                           },
+                                          controller: TextForm().visaduration,
                                           decoration: InputDecoration(
                                             suffixIcon: IconButton(
                                                 onPressed: () async {
@@ -459,11 +410,11 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                                                       await showDatePicker(
                                                           context: context,
                                                           initialDate:
-                                                              DateTime.now(),
+                                                              visaduration,
                                                           firstDate:
                                                               DateTime(1900),
                                                           lastDate:
-                                                              DateTime(2100));
+                                                              DateTime.now());
 
                                                   if (newDate == null) {
                                                     return;
@@ -490,6 +441,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                                                 ? 'Required / आवश्यक'
                                                 : null;
                                           },
+                                          controller: TextForm().visato,
                                           decoration: InputDecoration(
                                             suffixIcon: IconButton(
                                                 onPressed: () async {
@@ -497,11 +449,11 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                                                       await showDatePicker(
                                                           context: context,
                                                           initialDate:
-                                                              DateTime.now(),
+                                                              visaduration,
                                                           firstDate:
                                                               DateTime(1900),
                                                           lastDate:
-                                                              DateTime(2100));
+                                                              DateTime.now());
 
                                                   if (newDate == null) {
                                                     return;
@@ -527,7 +479,8 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                                                 ? 'Required / आवश्यक'
                                                 : null;
                                           },
-                                          controller: working_organization,
+                                          controller:
+                                              TextForm().working_organization,
                                           decoration: InputDecoration(
                                             border: OutlineInputBorder(),
                                             labelText:
@@ -546,7 +499,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                                                 ? 'Required / आवश्यक'
                                                 : null;
                                           },
-                                          controller: remarks,
+                                          controller: TextForm().remarks,
                                           decoration: InputDecoration(
                                             border: OutlineInputBorder(),
                                             labelText: 'कैफियत',
@@ -599,7 +552,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                                       ? 'Required / आवश्यक'
                                       : null;
                                 },
-                                controller: degree,
+                                controller: TextForm().degree,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                   labelText: 'Degree / डिग्री',
@@ -617,7 +570,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                                       ? 'Required / आवश्यक'
                                       : null;
                                 },
-                                controller: university,
+                                controller: TextForm().university,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                   labelText:
@@ -636,7 +589,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                                       ? 'Required / आवश्यक'
                                       : null;
                                 },
-                                controller: division,
+                                controller: TextForm().division,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                   labelText: 'Division/Rank (श्रेणी)',
@@ -654,7 +607,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                                       ? 'Required / आवश्यक'
                                       : null;
                                 },
-                                controller: passedyear,
+                                controller: TextForm().passedyear,
                                 keyboardType: TextInputType.datetime,
                                 decoration: InputDecoration(
                                   suffixIcon: IconButton(
@@ -715,7 +668,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                       validator: (value) {
                         return value!.isEmpty ? 'Required / आवश्यक' : null;
                       },
-                      controller: nameOfOrganization,
+                      controller: TextForm().nameOfOrganization,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Name of Organization /  कार्यालयको नाम ',
@@ -731,7 +684,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                       validator: (value) {
                         return value!.isEmpty ? 'Required / आवश्यक' : null;
                       },
-                      controller: addressOfOrganization,
+                      controller: TextForm().addressOfOrganization,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText:
@@ -748,7 +701,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                       validator: (value) {
                         return value!.isEmpty ? 'Required / आवश्यक' : null;
                       },
-                      controller: designation,
+                      controller: TextForm().designation,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Designation / दर्जा ',
@@ -764,7 +717,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                       validator: (value) {
                         return value!.isEmpty ? 'Required / आवश्यक' : null;
                       },
-                      controller: contactNumberofOrganization,
+                      controller: TextForm().contactNumberofOrganization,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -782,7 +735,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                       validator: (value) {
                         return value!.isEmpty ? 'Required / आवश्यक' : null;
                       },
-                      controller: contactEmailOfOrganization,
+                      controller: TextForm().contactEmailOfOrganization,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText:
@@ -799,7 +752,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                       validator: (value) {
                         return value!.isEmpty ? 'Required / आवश्यक' : null;
                       },
-                      controller: focalPersonOfOrganization,
+                      controller: TextForm().focalPersonOfOrganization,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText:
@@ -816,7 +769,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                       validator: (value) {
                         return value!.isEmpty ? 'Required / आवश्यक' : null;
                       },
-                      controller: telephone,
+                      controller: TextForm().telephone,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText:
@@ -848,7 +801,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                       validator: (value) {
                         return value!.isEmpty ? 'Required / आवश्यक' : null;
                       },
-                      controller: referenceName,
+                      controller: TextForm().referenceName,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Reference Name / सन्दर्भ नाम',
@@ -864,7 +817,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                       validator: (value) {
                         return value!.isEmpty ? 'Required / आवश्यक' : null;
                       },
-                      controller: referenceNumber,
+                      controller: TextForm().referenceNumber,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Reference Number / सन्दर्भ नम्बर ',
@@ -888,57 +841,72 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text('Name: ${name.text}'),
+              Text('Name: ${TextForm().name.text}'),
               Text('Please check every details'),
             ],
           ),
         )
       ];
+
   @override
   Widget build(BuildContext context) {
-    ref.listen<PassState>(crudProvider, (previous, next) {
-      if (next.passstate == PassportState.added) {
-        // Get.back();
-        Get.to(() => const PassportPage());
-      }
-    });
-    // final image = ref.watch(imageProvider).image;
+    final image = ref.watch(imageProvider).image;
 
     return SafeArea(
       child: Scaffold(
         body: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: InkWell(
-                onTap: () async {
-                  getImage();
-                },
-                child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.grey,
-                    ),
-                    height: 150,
-                    width: 150,
-                    child: image == null
-                        ? ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: const Center(
-                              child: Text("Image"),
-                            ),
-                          )
-                        : ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Center(
-                              child: Image.file(
-                                File(image!.path),
-                                fit: BoxFit.fill,
-                                height: 150,
-                                width: double.infinity,
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.grey,
+              ),
+              height: 80,
+              width: 80,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Positioned(
+                      child: image == null
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: const Center(
+                                child: Text("Image"),
                               ),
-                            ),
-                          )),
+                            )
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Center(
+                                child: Image.file(
+                                  File(image.path),
+                                  fit: BoxFit.fill,
+                                  height: 80,
+                                  width: 80,
+                                ),
+                              ),
+                            )),
+                  Positioned(
+                    right: 5,
+                    top: 5,
+                    child: GestureDetector(
+                      onTap: () async {
+                        ref.read(imageProvider).getImage();
+                      },
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: const Color(0xff10A6D9),
+                            border: Border.all(width: 2, color: Colors.white)),
+                        child: const Icon(
+                          Icons.camera_alt_outlined,
+                          color: Color(0xffFCFCFC),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
             Expanded(
@@ -949,55 +917,23 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                 steps: stepList(),
 
                 // onStepContinue takes us to the next step
-                onStepContinue: () async {
+                onStepContinue: () {
                   final isLastStep =
                       _activeCurrentStep == stepList().length - 1;
                   if (_activeCurrentStep < (stepList().length - 1)) {
                     setState(() {
-                      _activeCurrentStep += 1;
+                      if (personalform[_activeCurrentStep]
+                          .currentState!
+                          .validate()) {
+                        _activeCurrentStep += 1;
+                      }
                     });
                   }
                   if (isLastStep) {
-                    Random random = Random();
-                    final passportDetails = PassportModel(
-                        name: name.text,
-                        family_name: family_name.text,
-                        permanent_address: residential_address.text,
-                        personal_number: personal_number.text,
-                        office_number: office_number.text,
-                        nationality: nationality.text,
-                        father_name: father_name.text,
-                        mother_name: mother_name.text,
-                        religion: religion.text,
-                        blood_group: blood_group.text,
-                        email: email.text,
-                        marital_status: marital_status.text,
-                        passport_number: passport_number.text,
-                        validityofvisa: validityofvisa.text,
-                        currentvisatype: currentvisatype.text,
-                        visatype: visatype.text,
-                        working_organization: working_organization.text,
-                        remarks: remarks.text,
-                        degree: degree.text,
-                        university: university.text,
-                        division: division.text,
-                        passedyear: passedYear,
-                        nameOfOrganization: nameOfOrganization.text,
-                        addressOfOrganization: addressOfOrganization.text,
-                        designation: designation.text,
-                        contactNumberOfOrganization:
-                            contactNumberofOrganization.text,
-                        contactEmailOfOrganization:
-                            contactEmailOfOrganization.text,
-                        focalPersonOfOrganization:
-                            focalPersonOfOrganization.text,
-                        telephone: telephone.text,
-                        referenceName: referenceName.text,
-                        referenceNumber: referenceNumber.text,
-                        passport_id: random.nextInt(2147483647),
-                        image: image!.path);
-
-                    ref.read(crudProvider.notifier).setData(passportDetails);
+                    // Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                    //   return const Checking();
+                    // }));
+                    print('last step');
                   }
                 },
 

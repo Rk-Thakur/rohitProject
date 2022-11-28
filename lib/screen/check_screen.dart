@@ -1,22 +1,15 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rohit_projectt/model/passport_model.dart';
+import 'package:rohit_projectt/Widget/KText.dart';
+import 'package:rohit_projectt/Widget/category.dart';
 
-import '../Widget/KText.dart';
-import '../Widget/category.dart';
-
-// ignore: must_be_immutable
-class PassportDetails extends ConsumerStatefulWidget {
-  PassportDetails({Key? key, required this.passport}) : super(key: key);
-  PassportModel passport;
+class CheckScreen extends StatefulWidget {
+  CheckScreen({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<PassportDetails> createState() => _PassportDetailsState();
+  State<CheckScreen> createState() => _CheckScreenState();
 }
 
-class _PassportDetailsState extends ConsumerState<PassportDetails> {
+class _CheckScreenState extends State<CheckScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,20 +22,29 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Center(
-                      child: Image.file(
-                        File(widget.passport.image!),
-                        fit: BoxFit.cover,
-                        height: 300,
-                        width: 300,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
+                  // Container(
+                  //   width: 300,
+                  //   height: 300,
+                  //   child: ClipRRect(
+                  //       borderRadius: BorderRadius.circular(20),
+                  //       child: Center(
+                  //           child: widget.passport.image != null
+                  //               ? Image.file(
+                  //                   File(widget.passport.image!),
+                  //                   fit: BoxFit.cover,
+                  //                   width: 300,
+                  //                   height: 300,
+                  //                 )
+                  //               : Image.asset("assets/formal.png"))),
+                  // ),
+                  //        Center(
+                  //   child: Image.asset(
+                  //     'assets/passport.png',
+                  //     width: 100,
+                  //     height: 100,
+                  //     fit: BoxFit.contain,
+                  //   ),
+                  // ),
                   KText(
                       align: Alignment.topLeft,
                       title: 'Personal Details',
@@ -62,7 +64,7 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.name}',
+                            title: 'Ranjan Kumar',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -74,7 +76,7 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.family_name}',
+                            title: 'Thakur',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -86,7 +88,7 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.permanent_address}',
+                            title: 'Saptari',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -98,7 +100,7 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.residential_number}',
+                            title: 'Kathmandu',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -110,31 +112,31 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '+${widget.passport.personal_number}',
+                            title: '+97083883',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: 'Office',
+                            title: '+offiec',
                             fontSize: h1,
                             fontWeight: f1,
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.office_number}',
+                            title: '+97083883',
                             fontSize: h1,
                             fontWeight: f2,
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: 'Date of Birth',
+                            title: '+Date of birth',
                             fontSize: h1,
                             fontWeight: f1,
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.dateOfBirth}',
+                            title: '+NOV 23',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -146,7 +148,7 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.nationality}',
+                            title: 'Nepalese',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -158,19 +160,19 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.father_name}',
+                            title: 'Om prakash thakur',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: 'Mother Name:',
+                            title: '+Mother Name:',
                             fontSize: h1,
                             fontWeight: f1,
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.mother_name}',
+                            title: '+Bimala Devi',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -182,7 +184,7 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.religion}',
+                            title: 'Free thinker',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -194,43 +196,43 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.blood_group}',
+                            title: 'O+',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: 'Email Address',
+                            title: '+Email Address',
                             fontSize: h1,
                             fontWeight: f1,
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.email}',
+                            title: 'tranjan638@gmail.com',
                             fontSize: h1,
                             fontWeight: f2,
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: 'Marital Status',
+                            title: '+Matiral Status',
                             fontSize: h1,
                             fontWeight: f1,
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.marital_status}',
+                            title: '+UnMarried',
                             fontSize: h1,
                             fontWeight: f2,
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: 'Passport No:',
+                            title: '+Passport No:',
                             fontSize: h1,
                             fontWeight: f1,
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.passport_number}',
+                            title: '8979823',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -242,7 +244,7 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.validityofvisa}',
+                            title: '18 Nov 2022',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -254,7 +256,7 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.name}',
+                            title: 'Yes',
                             fontSize: h1,
                             fontWeight: f2,
                           ),
@@ -308,24 +310,12 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                                         ]),
                                       ]),
                                       TableRow(children: [
-                                        Column(children: [Text('1')]),
-                                        Column(children: [
-                                          Text('${widget.passport.visatype}')
-                                        ]),
-                                        Column(children: [
-                                          Text(
-                                              '${widget.passport.visaduration}')
-                                        ]),
-                                        Column(children: [
-                                          Text('${widget.passport.visato}')
-                                        ]),
-                                        Column(children: [
-                                          Text(
-                                              '${widget.passport.working_organization}')
-                                        ]),
-                                        Column(children: [
-                                          Text('${widget.passport.remarks}')
-                                        ]),
+                                        Column(children: [Text('Javatpoint')]),
+                                        Column(children: [Text('Flutter')]),
+                                        Column(children: [Text('5*')]),
+                                        Column(children: [Text('Javatpoint')]),
+                                        Column(children: [Text('Flutter')]),
+                                        Column(children: [Text('5*')]),
                                       ]),
                                     ],
                                   ),
@@ -382,18 +372,10 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                                 ]),
                               ]),
                               TableRow(children: [
-                                Column(children: [
-                                  Text('${widget.passport.degree}')
-                                ]),
-                                Column(children: [
-                                  Text('${widget.passport.university}')
-                                ]),
-                                Column(children: [
-                                  Text('${widget.passport.division}')
-                                ]),
-                                Column(children: [
-                                  Text('${widget.passport.passedyear}')
-                                ]),
+                                Column(children: [Text('Javatpoint')]),
+                                Column(children: [Text('Flutter')]),
+                                Column(children: [Text('5*')]),
+                                Column(children: [Text('Javatpoint')]),
                               ]),
                             ],
                           ),
@@ -421,7 +403,7 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.nameOfOrganization}',
+                            title: 'CSCEC',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -433,7 +415,7 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.addressOfOrganization}',
+                            title: 'Bhatbhateni, Naxal, Kathmandu',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -445,7 +427,7 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.designation}',
+                            title: 'Quality Surveyor',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -457,8 +439,7 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title:
-                                '${widget.passport.contactNumberOfOrganization}',
+                            title: '89029394',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -470,8 +451,7 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title:
-                                '${widget.passport.contactEmailOfOrganization}',
+                            title: 'kumar.poald@ml.com',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -483,8 +463,7 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title:
-                                '${widget.passport.focalPersonOfOrganization}',
+                            title: 'Kumar Pokrel',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -496,7 +475,7 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.telephone}',
+                            title: '0439',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -518,13 +497,25 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                         children: [
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.referenceName}',
+                            title: 'Sadikshya Amgain',
                             fontSize: h1,
                             fontWeight: f2,
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.referenceNumber}',
+                            title: '9809234',
+                            fontSize: h2,
+                            fontWeight: f2,
+                          ),
+                          KText(
+                            align: Alignment.topLeft,
+                            title: 'Laxmi Poudel',
+                            fontSize: h1,
+                            fontWeight: f2,
+                          ),
+                          KText(
+                            align: Alignment.topLeft,
+                            title: '94943',
                             fontSize: h2,
                             fontWeight: f2,
                           ),

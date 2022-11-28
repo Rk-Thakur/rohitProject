@@ -71,14 +71,14 @@ class BuildListView extends ConsumerWidget {
                             ),
                             SlidableAction(
                               onPressed: (context) async {
-                                await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            EditPassportDetails(
-                                              passportdetails,
-                                              index,
-                                            )));
+                                // await Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) =>
+                                //             EditPassportDetails(
+                                //               passportdetails,
+                                //               index,
+                                //             )));
                               },
                               backgroundColor: const Color(0xFF21B7CA),
                               foregroundColor: Colors.white,
@@ -146,8 +146,8 @@ class BuildListView extends ConsumerWidget {
                                   ),
                                 ],
                               ),
-                              subtitle: Text(
-                                  passportdetails.passportNumber.toString())),
+                              subtitle:
+                                  Text(passportdetails.degree.toString())),
                         ),
                       ),
                     );

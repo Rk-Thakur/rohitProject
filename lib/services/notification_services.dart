@@ -34,7 +34,7 @@ class NotificationServices {
         id: passport_id!,
         channelKey: 'key1',
         title: pasport?.name,
-        body: pasport?.passportNumber,
+        body: pasport?.designation,
       ),
       schedule: NotificationInterval(
         interval: 60, timeZone: timezone, repeats: true,

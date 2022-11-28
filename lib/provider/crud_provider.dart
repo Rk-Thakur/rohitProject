@@ -3,8 +3,8 @@ import 'package:rohit_projectt/model/passport_model.dart';
 import 'package:rohit_projectt/provider/crud_model.dart';
 import 'package:rohit_projectt/services/db_services.dart';
 
-final crudProvider = StateNotifierProvider.autoDispose<CrudProvider, PassState>(
-    (ref) => CrudProvider(ref));
+final crudProvider =
+    StateNotifierProvider<CrudProvider, PassState>((ref) => CrudProvider(ref));
 
 class CrudProvider extends StateNotifier<PassState> {
   CrudProvider(this.ref)
@@ -15,7 +15,6 @@ class CrudProvider extends StateNotifier<PassState> {
   Future<bool> setData(PassportModel passport) async {
     try {
       state = state.copyWith(passstate: PassportState.adding);
-      print(passport.image);
       await DBServices().setDetails(passport);
       state = state.copyWith(passstate: PassportState.added);
       return true;

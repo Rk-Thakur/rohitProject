@@ -1,39 +1,21 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:rohit_projectt/provider/crud_model.dart';
-import 'package:rohit_projectt/provider/crud_provider.dart';
+import 'package:rohit_projectt/Widget/textformfield.dart';
 
 import '../Widget/category.dart';
-import '../model/passport_model.dart';
 import '../provider/image_provider.dart';
-import 'passport_entry.dart';
 
-class PassportFormPage extends ConsumerStatefulWidget {
-  const PassportFormPage({Key? key}) : super(key: key);
+class MyHomePage extends ConsumerStatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<PassportFormPage> createState() => _PassportFormPageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _PassportFormPageState extends ConsumerState<PassportFormPage> {
-  XFile? image;
-  Future<void> getImage() async {
-    final ImagePicker _picker = ImagePicker();
-
-    await _picker
-        .pickImage(source: ImageSource.gallery)
-        .then((value) => value != null
-            ? setState(() {
-                image = value;
-              })
-            : null);
-  }
-
+class _MyHomePageState extends ConsumerState<MyHomePage> {
   int _activeCurrentStep = 0;
   var stay_previous = ['Yes', 'No'];
 
@@ -86,6 +68,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
   ];
+
   List<Step> stepList() => [
         Step(
           state:
@@ -894,15 +877,10 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
           ),
         )
       ];
+
   @override
   Widget build(BuildContext context) {
-    ref.listen<PassState>(crudProvider, (previous, next) {
-      if (next.passstate == PassportState.added) {
-        // Get.back();
-        Get.to(() => const PassportPage());
-      }
-    });
-    // final image = ref.watch(imageProvider).image;
+    final image = ref.watch(imageProvider).image;
 
     return SafeArea(
       child: Scaffold(
@@ -912,33 +890,35 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
               padding: const EdgeInsets.all(10.0),
               child: InkWell(
                 onTap: () async {
-                  getImage();
+                  ref.read(imageProvider).getImage();
                 },
                 child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.grey,
-                    ),
-                    height: 150,
-                    width: 150,
-                    child: image == null
-                        ? ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: const Center(
-                              child: Text("Image"),
-                            ),
-                          )
-                        : ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Center(
-                              child: Image.file(
-                                File(image!.path),
-                                fit: BoxFit.fill,
-                                height: 150,
-                                width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.grey,
+                  ),
+                  height: 150,
+                  width: 150,
+                  child: Positioned(
+                      child: image == null
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: const Center(
+                                child: Text("Image"),
                               ),
-                            ),
-                          )),
+                            )
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Center(
+                                child: Image.file(
+                                  File(image.path),
+                                  fit: BoxFit.fitWidth,
+                                  height: 150,
+                                  width: 150,
+                                ),
+                              ),
+                            )),
+                ),
               ),
             ),
             Expanded(
@@ -949,7 +929,7 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                 steps: stepList(),
 
                 // onStepContinue takes us to the next step
-                onStepContinue: () async {
+                onStepContinue: () {
                   final isLastStep =
                       _activeCurrentStep == stepList().length - 1;
                   if (_activeCurrentStep < (stepList().length - 1)) {
@@ -958,46 +938,10 @@ class _PassportFormPageState extends ConsumerState<PassportFormPage> {
                     });
                   }
                   if (isLastStep) {
-                    Random random = Random();
-                    final passportDetails = PassportModel(
-                        name: name.text,
-                        family_name: family_name.text,
-                        permanent_address: residential_address.text,
-                        personal_number: personal_number.text,
-                        office_number: office_number.text,
-                        nationality: nationality.text,
-                        father_name: father_name.text,
-                        mother_name: mother_name.text,
-                        religion: religion.text,
-                        blood_group: blood_group.text,
-                        email: email.text,
-                        marital_status: marital_status.text,
-                        passport_number: passport_number.text,
-                        validityofvisa: validityofvisa.text,
-                        currentvisatype: currentvisatype.text,
-                        visatype: visatype.text,
-                        working_organization: working_organization.text,
-                        remarks: remarks.text,
-                        degree: degree.text,
-                        university: university.text,
-                        division: division.text,
-                        passedyear: passedYear,
-                        nameOfOrganization: nameOfOrganization.text,
-                        addressOfOrganization: addressOfOrganization.text,
-                        designation: designation.text,
-                        contactNumberOfOrganization:
-                            contactNumberofOrganization.text,
-                        contactEmailOfOrganization:
-                            contactEmailOfOrganization.text,
-                        focalPersonOfOrganization:
-                            focalPersonOfOrganization.text,
-                        telephone: telephone.text,
-                        referenceName: referenceName.text,
-                        referenceNumber: referenceNumber.text,
-                        passport_id: random.nextInt(2147483647),
-                        image: image!.path);
-
-                    ref.read(crudProvider.notifier).setData(passportDetails);
+                    // Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                    //   return const Checking();
+                    // }));
+                    print('last step');
                   }
                 },
 

@@ -146,7 +146,6 @@ class _SearchFinderState extends State<SearchFinder> {
                         elevation: 3,
                         child: ListTile(
                           title: Text(passportdetails.name.toString()),
-                          subtitle: Text(passportdetails.address.toString()),
                         ),
                       ),
                     );
