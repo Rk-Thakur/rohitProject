@@ -20,10 +20,10 @@ class PassportModelAdapter extends TypeAdapter<PassportModel> {
       name: fields[0] as String?,
       family_name: fields[1] as String?,
       permanent_address: fields[2] as String?,
-      residential_number: fields[3] as String?,
+      residential_address: fields[3] as String?,
       personal_number: fields[4] as String?,
       office_number: fields[5] as String?,
-      dateOfBirth: fields[6] as DateTime?,
+      dateOfBirth: fields[6] as String?,
       nationality: fields[7] as String?,
       father_name: fields[8] as String?,
       mother_name: fields[9] as String?,
@@ -35,14 +35,14 @@ class PassportModelAdapter extends TypeAdapter<PassportModel> {
       validityofvisa: fields[15] as String?,
       currentvisatype: fields[16] as String?,
       visatype: fields[17] as String?,
-      visaduration: fields[18] as DateTime?,
-      visato: fields[19] as DateTime?,
+      visaduration: fields[18] as String?,
+      visato: fields[19] as String?,
       working_organization: fields[20] as String?,
       remarks: fields[21] as String?,
       degree: fields[22] as String?,
       university: fields[23] as String?,
       division: fields[24] as String?,
-      passedyear: fields[25] as DateTime?,
+      passedyear: fields[25] as String?,
       nameOfOrganization: fields[26] as String?,
       addressOfOrganization: fields[27] as String?,
       designation: fields[28] as String?,
@@ -68,7 +68,7 @@ class PassportModelAdapter extends TypeAdapter<PassportModel> {
       ..writeByte(2)
       ..write(obj.permanent_address)
       ..writeByte(3)
-      ..write(obj.residential_number)
+      ..write(obj.residential_address)
       ..writeByte(4)
       ..write(obj.personal_number)
       ..writeByte(5)

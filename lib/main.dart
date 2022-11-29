@@ -16,7 +16,6 @@ void main() async {
   Hive.registerAdapter(PassportModelAdapter());
   NotificationServices().initialization();
 
-  // runApp(MaterialApp(home: ProviderScope(child: MyHomePage())));
   runApp(const ProviderScope(child: MyApp()));
 }
 

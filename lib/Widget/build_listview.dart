@@ -71,14 +71,14 @@ class BuildListView extends ConsumerWidget {
                             ),
                             SlidableAction(
                               onPressed: (context) async {
-                                // await Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             EditPassportDetails(
-                                //               passportdetails,
-                                //               index,
-                                //             )));
+                                await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            EditPassportDetails(
+                                              passportdetails,
+                                              index,
+                                            )));
                               },
                               backgroundColor: const Color(0xFF21B7CA),
                               foregroundColor: Colors.white,

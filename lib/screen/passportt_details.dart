@@ -32,13 +32,18 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(50),
                     child: Center(
-                      child: Image.file(
-                        File(widget.passport.image!),
-                        fit: BoxFit.cover,
-                        height: 300,
-                        width: 300,
-                      ),
-                    ),
+                        child: widget.passport.image != null
+                            ? Image.file(
+                                File(widget.passport.image!),
+                                fit: BoxFit.cover,
+                                height: 300,
+                                width: 300,
+                              )
+                            : Center(
+                                child: CircularProgressIndicator(
+                                  color: Colors.red,
+                                ),
+                              )),
                   ),
                   SizedBox(
                     height: 15,
@@ -92,13 +97,13 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: 'Residental',
+                            title: 'Residental Address',
                             fontSize: h1,
                             fontWeight: f1,
                           ),
                           KText(
                             align: Alignment.topLeft,
-                            title: '${widget.passport.residential_number}',
+                            title: '${widget.passport.residential_address}',
                             fontSize: h2,
                             fontWeight: f2,
                           ),
@@ -252,14 +257,6 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                             fontSize: h1,
                             fontWeight: f1,
                           ),
-                          KText(
-                            align: Alignment.topLeft,
-                            title: '${widget.passport.name}',
-                            fontSize: h1,
-                            fontWeight: f2,
-                          ),
-                          //table for the storage of the previous stay in Nepal
-                          // Table(children: [TableRow()]),
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Container(
@@ -326,7 +323,7 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                                         Column(children: [
                                           Text('${widget.passport.remarks}')
                                         ]),
-                                      ]),
+                                      ])
                                     ],
                                   ),
                                 ],

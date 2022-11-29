@@ -14,13 +14,13 @@ class PassportModel {
   @HiveField(2)
   final String? permanent_address;
   @HiveField(3)
-  final String? residential_number;
+  final String? residential_address;
   @HiveField(4)
   final String? personal_number;
   @HiveField(5)
   final String? office_number;
   @HiveField(6)
-  final DateTime? dateOfBirth;
+  final String? dateOfBirth;
   @HiveField(7)
   final String? nationality;
   @HiveField(8)
@@ -44,9 +44,9 @@ class PassportModel {
   @HiveField(17)
   final String? visatype;
   @HiveField(18)
-  final DateTime? visaduration;
+  final String? visaduration;
   @HiveField(19)
-  final DateTime? visato;
+  final String? visato;
   @HiveField(20)
   final String? working_organization;
   @HiveField(21)
@@ -58,7 +58,7 @@ class PassportModel {
   @HiveField(24)
   final String? division;
   @HiveField(25)
-  final DateTime? passedyear;
+  final String? passedyear;
   @HiveField(26)
   final String? nameOfOrganization;
   @HiveField(27)
@@ -85,7 +85,7 @@ class PassportModel {
     this.name,
     this.family_name,
     this.permanent_address,
-    this.residential_number,
+    this.residential_address,
     this.personal_number,
     this.office_number,
     this.dateOfBirth,
