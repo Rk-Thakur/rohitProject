@@ -24,10 +24,6 @@ class PassportFormPage extends ConsumerStatefulWidget {
 }
 
 class _MyHomePageState extends ConsumerState<PassportFormPage> {
-  int _activeCurrentStep = 0;
-  var stay_previous = ['Yes', 'No'];
-
-  String? previous;
   TextEditingController name = TextEditingController();
   TextEditingController family_name = TextEditingController();
   TextEditingController permanent_address = TextEditingController();
@@ -45,6 +41,8 @@ class _MyHomePageState extends ConsumerState<PassportFormPage> {
   TextEditingController passport_number = TextEditingController();
   TextEditingController validityofvisa = TextEditingController();
   TextEditingController currentvisatype = TextEditingController();
+  TextEditingController dateofissues = TextEditingController();
+  TextEditingController dateofexpiry = TextEditingController();
   TextEditingController visatype = TextEditingController();
   TextEditingController working_organization = TextEditingController();
   TextEditingController remarks = TextEditingController();
@@ -69,6 +67,11 @@ class _MyHomePageState extends ConsumerState<PassportFormPage> {
   //reference
   TextEditingController referenceName = TextEditingController();
   TextEditingController referenceNumber = TextEditingController();
+
+  //checkout details
+  TextEditingController passportreceived = TextEditingController();
+  TextEditingController passportcheckout = TextEditingController();
+
   GlobalKey<FormState> personalform = GlobalKey<FormState>();
   XFile? image;
   Future<void> getImage() async {
@@ -109,22 +112,36 @@ class _MyHomePageState extends ConsumerState<PassportFormPage> {
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.grey,
                           ),
-                          height: 400,
+                          height: 350,
                           width: double.infinity,
                           child: image == null
                               ? ClipRRect(
                                   borderRadius: BorderRadius.circular(20),
-                                  child: const Center(
-                                    child: Text("Image"),
-                                  ),
-                                )
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.image,
+                                        color: Colors.black,
+                                        size: 200,
+                                      ),
+                                      Text(
+                                        'Image',
+                                        style: TextStyle(
+                                          fontSize: 25,
+                                        ),
+                                      )
+                                    ],
+                                  ))
                               : ClipRRect(
                                   borderRadius: BorderRadius.circular(20),
                                   child: Center(
                                     child: Image.file(
                                       File(image!.path),
                                       fit: BoxFit.fill,
-                                      height: 400,
+                                      height: 350,
                                       width: double.infinity,
                                     ),
                                   ),
@@ -199,11 +216,6 @@ class _MyHomePageState extends ConsumerState<PassportFormPage> {
                                 height: height,
                               ),
                               TextFormField(
-                                validator: (value) {
-                                  return value!.isEmpty
-                                      ? 'Required / आवश्यक'
-                                      : null;
-                                },
                                 controller: personal_number,
                                 keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
@@ -436,6 +448,7 @@ class _MyHomePageState extends ConsumerState<PassportFormPage> {
                     ),
                     GFAccordion(
                       title: "Passport Details",
+                      titleBorderRadius: BorderRadius.circular(10),
                       textStyle: TextStyle(
                         fontSize: h1,
                         fontWeight: f0,
@@ -447,6 +460,11 @@ class _MyHomePageState extends ConsumerState<PassportFormPage> {
                           child: Column(
                             children: [
                               TextFormField(
+                                validator: (value) {
+                                  return value!.isEmpty
+                                      ? 'Required / आवश्यक'
+                                      : null;
+                                },
                                 controller: passport_number,
                                 keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
@@ -461,6 +479,11 @@ class _MyHomePageState extends ConsumerState<PassportFormPage> {
                                 height: height,
                               ),
                               TextFormField(
+                                validator: (value) {
+                                  return value!.isEmpty
+                                      ? 'Required / आवश्यक'
+                                      : null;
+                                },
                                 controller: validityofvisa,
                                 keyboardType: TextInputType.datetime,
                                 decoration: InputDecoration(
@@ -475,10 +498,54 @@ class _MyHomePageState extends ConsumerState<PassportFormPage> {
                                 height: height,
                               ),
                               TextFormField(
+                                validator: (value) {
+                                  return value!.isEmpty
+                                      ? 'Required / आवश्यक'
+                                      : null;
+                                },
                                 controller: currentvisatype,
+                                keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                   labelText: 'Current Visa Type / भिसा प्रकार',
+                                  labelStyle: TextStyle(
+                                    fontSize: labelsize,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: height,
+                              ),
+                              TextFormField(
+                                validator: (value) {
+                                  return value!.isEmpty
+                                      ? 'Required / आवश्यक'
+                                      : null;
+                                },
+                                controller: dateofissues,
+                                keyboardType: TextInputType.datetime,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  labelText: 'Date Of Issues / जारी मिति',
+                                  labelStyle: TextStyle(
+                                    fontSize: labelsize,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: height,
+                              ),
+                              TextFormField(
+                                validator: (value) {
+                                  return value!.isEmpty
+                                      ? 'Required / आवश्यक'
+                                      : null;
+                                },
+                                controller: dateofexpiry,
+                                keyboardType: TextInputType.datetime,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  labelText: 'Date Of Expiry / म्याद सकिने दिन',
                                   labelStyle: TextStyle(
                                     fontSize: labelsize,
                                   ),
@@ -491,6 +558,7 @@ class _MyHomePageState extends ConsumerState<PassportFormPage> {
                     ),
                     GFAccordion(
                       title: 'Education Qualification',
+                      titleBorderRadius: BorderRadius.circular(10),
                       textStyle: TextStyle(
                         fontSize: h1,
                         fontWeight: f0,
@@ -565,6 +633,7 @@ class _MyHomePageState extends ConsumerState<PassportFormPage> {
                     ),
                     GFAccordion(
                       title: 'Professional Description',
+                      titleBorderRadius: BorderRadius.circular(10),
                       textStyle: TextStyle(
                         fontSize: h1,
                         fontWeight: f0,
@@ -678,6 +747,7 @@ class _MyHomePageState extends ConsumerState<PassportFormPage> {
                     ),
                     GFAccordion(
                       title: 'Reference Details',
+                      titleBorderRadius: BorderRadius.circular(10),
                       textStyle: TextStyle(
                         fontSize: h1,
                         fontWeight: f0,
@@ -708,6 +778,51 @@ class _MyHomePageState extends ConsumerState<PassportFormPage> {
                                   border: OutlineInputBorder(),
                                   labelText:
                                       'Reference Number / सन्दर्भ नम्बर ',
+                                  labelStyle: TextStyle(
+                                    fontSize: labelsize,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    GFAccordion(
+                      title: 'Checkout Details',
+                      titleBorderRadius: BorderRadius.circular(10),
+                      textStyle: TextStyle(
+                        fontSize: h1,
+                        fontWeight: f0,
+                      ),
+                      contentChild: Card(
+                        elevation: 5,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              TextFormField(
+                                controller: passportreceived,
+                                keyboardType: TextInputType.datetime,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  labelText:
+                                      'Passport Received  / राहदानी प्राप्त मिति',
+                                  labelStyle: TextStyle(
+                                    fontSize: labelsize,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: height,
+                              ),
+                              TextFormField(
+                                controller: passportcheckout,
+                                keyboardType: TextInputType.datetime,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  labelText:
+                                      'Passport Checkout Date  / राहदानी चेकआउट मिति ',
                                   labelStyle: TextStyle(
                                     fontSize: labelsize,
                                   ),
@@ -776,7 +891,11 @@ class _MyHomePageState extends ConsumerState<PassportFormPage> {
                                 passport_id: random.nextInt(2147483647),
                                 visaduration: duration.text,
                                 visato: duration.text,
-                                image: image!.path);
+                                image: image!.path,
+                                dateofissues: dateofissues.text,
+                                dateofexpiry: dateofexpiry.text,
+                                passportcheckoutdate: passportcheckout.text,
+                                passportreceiveddate: passportreceived.text);
 
                             ref
                                 .read(crudProvider.notifier)

@@ -54,13 +54,17 @@ class PassportModelAdapter extends TypeAdapter<PassportModel> {
       referenceName: fields[34] as String?,
       referenceNumber: fields[35] as String?,
       image: fields[36] as String?,
+      dateofissues: fields[37] as String?,
+      dateofexpiry: fields[38] as String?,
+      passportcheckoutdate: fields[40] as String?,
+      passportreceiveddate: fields[39] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, PassportModel obj) {
     writer
-      ..writeByte(37)
+      ..writeByte(41)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -134,7 +138,15 @@ class PassportModelAdapter extends TypeAdapter<PassportModel> {
       ..writeByte(35)
       ..write(obj.referenceNumber)
       ..writeByte(36)
-      ..write(obj.image);
+      ..write(obj.image)
+      ..writeByte(37)
+      ..write(obj.dateofissues)
+      ..writeByte(38)
+      ..write(obj.dateofexpiry)
+      ..writeByte(39)
+      ..write(obj.passportreceiveddate)
+      ..writeByte(40)
+      ..write(obj.passportcheckoutdate);
   }
 
   @override

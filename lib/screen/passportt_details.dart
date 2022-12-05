@@ -515,13 +515,65 @@ class _PassportDetailsState extends ConsumerState<PassportDetails> {
                         children: [
                           KText(
                             align: Alignment.topLeft,
+                            title: 'Reference Name:',
+                            fontSize: h1,
+                            fontWeight: f1,
+                          ),
+                          KText(
+                            align: Alignment.topLeft,
                             title: '${widget.passport.referenceName}',
                             fontSize: h1,
                             fontWeight: f2,
                           ),
                           KText(
                             align: Alignment.topLeft,
+                            title: 'Reference Number:',
+                            fontSize: h1,
+                            fontWeight: f1,
+                          ),
+                          KText(
+                            align: Alignment.topLeft,
                             title: '${widget.passport.referenceNumber}',
+                            fontSize: h2,
+                            fontWeight: f2,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  KText(
+                    align: Alignment.topLeft,
+                    title: 'Checkout Details',
+                    fontSize: h1,
+                    fontWeight: f0,
+                  ),
+                  //References details
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      child: Column(
+                        children: [
+                          KText(
+                            align: Alignment.topLeft,
+                            title: 'Passport Received Date:',
+                            fontSize: h1,
+                            fontWeight: f1,
+                          ),
+                          KText(
+                            align: Alignment.topLeft,
+                            title: '${widget.passport.passportreceiveddate}',
+                            fontSize: h1,
+                            fontWeight: f2,
+                          ),
+                          KText(
+                            align: Alignment.topLeft,
+                            title: 'Passport Checout Date:',
+                            fontSize: h1,
+                            fontWeight: f1,
+                          ),
+                          KText(
+                            align: Alignment.topLeft,
+                            title: '${widget.passport.passportcheckoutdate}',
                             fontSize: h2,
                             fontWeight: f2,
                           ),

@@ -39,6 +39,15 @@ class BuildListView extends ConsumerWidget {
                     final passportdetails =
                         passportBox.getAt(index) as PassportModel;
                     return InkWell(
+                      onDoubleTap: () async {
+                        ref.read(crudProvider.notifier).deleteData(index);
+                        if (isNotified == true) {
+                          NotificationServices()
+                              .deletNotification(passportdetails.passport_id!);
+                          Get.snackbar("Notification Update",
+                              'Notification has been Deleted!!');
+                        }
+                      },
                       onTap: () {
                         Get.to(() => PassportDetails(
                               passport: passportdetails,
@@ -48,27 +57,27 @@ class BuildListView extends ConsumerWidget {
                         startActionPane: ActionPane(
                           motion: const ScrollMotion(),
                           children: [
-                            SlidableAction(
-                              onPressed: (context) async {
-                                ref
-                                    .read(crudProvider.notifier)
-                                    .deleteData(index);
-                                if (isNotified == true) {
-                                  NotificationServices().deletNotification(
-                                      passportdetails.passport_id!);
-                                  Get.snackbar("Notification Update",
-                                      'Notification has been Deleted!!');
-                                }
-                              },
-                              backgroundColor: const Color(0xFFFE4A49),
-                              foregroundColor: Colors.white,
-                              icon: Icons.delete,
-                              label: 'Delete',
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            const SizedBox(
-                              width: 4,
-                            ),
+                            // SlidableAction(
+                            //   onPressed: (context) async {
+                            //     ref
+                            //         .read(crudProvider.notifier)
+                            //         .deleteData(index);
+                            //     if (isNotified == true) {
+                            //       NotificationServices().deletNotification(
+                            //           passportdetails.passport_id!);
+                            //       Get.snackbar("Notification Update",
+                            //           'Notification has been Deleted!!');
+                            //     }
+                            //   },
+                            //   backgroundColor: const Color(0xFFFE4A49),
+                            //   foregroundColor: Colors.white,
+                            //   icon: Icons.delete,
+                            //   label: 'Delete',
+                            //   borderRadius: BorderRadius.circular(10),
+                            // ),
+                            // const SizedBox(
+                            //   width: 4,
+                            // ),
                             SlidableAction(
                               onPressed: (context) async {
                                 await Navigator.push(
