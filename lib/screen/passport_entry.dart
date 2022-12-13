@@ -43,14 +43,12 @@ class _PassportPageState extends State<PassportPage> {
           ),
         ),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            children: [
-              Expanded(child: BuildListView()),
-            ],
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          children: [
+            Expanded(child: BuildListView()),
+          ],
         ),
       ),
       drawer: Drawer(
