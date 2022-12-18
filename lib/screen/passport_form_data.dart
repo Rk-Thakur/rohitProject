@@ -143,7 +143,7 @@ class _MyHomePageState extends ConsumerState<PassportFormPage> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'Image',
+                                      'Select Image',
                                       style: TextStyle(
                                         fontSize: 25,
                                       ),
@@ -923,7 +923,7 @@ class _MyHomePageState extends ConsumerState<PassportFormPage> {
                       ),
                       child: Center(
                         child: Text(
-                          "Send",
+                          "Save",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: h1,
